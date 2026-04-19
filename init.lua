@@ -603,6 +603,7 @@ require('lazy').setup({
         clangd = {},
         gopls = {},
         pyright = {},
+        jsonls = {},
         -- rust_analyzer = {},
         --
         -- Some languages (like typescript) have entire language plugins that can be useful:
@@ -704,6 +705,8 @@ require('lazy').setup({
       formatters_by_ft = {
         lua = { 'stylua' },
         c = { 'clang-format' },
+        json = { 'prettier'},
+        jsonc = { 'prettier' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
