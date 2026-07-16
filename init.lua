@@ -692,7 +692,8 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    -- clangd = {},
+    clangd = {},
+    bashls = {},
     -- gopls = {},
     -- pyright = {},
     -- rust_analyzer = {},
@@ -782,8 +783,10 @@ do
     format_on_save = function(bufnr)
       -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
-        -- lua = true,
-        -- python = true,
+        c = true,
+        lua = true,
+        python = true,
+        rust = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -796,7 +799,11 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
-      -- rust = { 'rustfmt' },
+      c = { 'clang-format' },
+      make = { 'checkmake' },
+      sh = { 'shfmt' },
+      bash = { 'shfmt' },
+      rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
       --
@@ -977,6 +984,7 @@ do
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   require 'custom.plugins'
+  require 'custom.keymaps'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
