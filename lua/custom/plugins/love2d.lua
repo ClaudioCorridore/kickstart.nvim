@@ -10,6 +10,7 @@ vim.pack.add {
 
 -- Create an autocommand that checks for a LÖVE project structure
 local augroup = vim.api.nvim_create_augroup('Love2dConfig', { clear = true })
+local initialized = false
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'lua',
@@ -19,9 +20,12 @@ vim.api.nvim_create_autocmd('FileType', {
     if vim.fn.filereadable 'main.lua' == 1 then
       local ok, love2d = pcall(require, 'love2d')
       if ok then
-        love2d.setup {
-          path_to_love_bin = '~/Applications/love.app/Contents/MacOS/love',
-        }
+        if not initialized then
+          love2d.setup {
+            path_to_love_bin = '~/Applications/love.app/Contents/MacOS/love',
+          }
+          initialized = true
+        end
 
         -- Set buffer-local keymaps so they only apply to this project
         vim.keymap.set('n', '<leader>vv', '<cmd>LoveRun<CR>', { buffer = args.buf, desc = 'Run LÖVE', silent = true })
