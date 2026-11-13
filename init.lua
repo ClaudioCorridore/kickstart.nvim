@@ -958,7 +958,6 @@ do
 
   -- Ensure basic parsers are installed
   local parsers = { 'bash', 'c', 'doxygen', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
-  require('nvim-treesitter.install').compilers = { 'clang' }
   require('nvim-treesitter').install(parsers)
 
   ---@param buf integer
